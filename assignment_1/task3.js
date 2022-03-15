@@ -7,3 +7,8 @@ arr.map((l)=>{
     arr2.push(l);
 })
 console.log(arr2)
+
+
+
+
+
