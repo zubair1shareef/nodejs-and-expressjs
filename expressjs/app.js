@@ -1,11 +1,19 @@
 const express=require('express');
+const bodyParser=require('body-parser');
 const app=express();
+app.use(bodyParser.urlencoded({extended:false}))
 
-app.use((req,res,next)=>{
-    console.log("fns;kfn")
-    next();
+
+app.use('/add-product',(req,res)=>{
+    res.send("<form method='POST'  action='/product'> <input type='text' name='title' > <input type='Number' name='size' > </input> <button type='submit'>submit</button></form>")
 })
-app.use((req,res,next)=>{
+
+app.post('/product',(req,res)=>{
+    console.log(req.body)
+    res.redirect('/')
+})
+
+app.use('/',(req,res,next)=>{
     res.send("<h1> hola world</h1>")
 })
 
