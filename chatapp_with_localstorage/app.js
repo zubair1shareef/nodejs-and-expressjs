@@ -10,19 +10,23 @@ app.use(login)
 
 
 app.get('/',(req, res, next)=>{
-
-    res.send('<form action="/" method="POST" onsubmit="document.getElementById(`username`).value=localStorage.getItem(`username`)" >  <input type="text" name="message" id="message"></input><input type="hidden" name="username" id="username">   </input> <button type="submit"> submit</button> </form>')
-
-})
-
-app.get('/',(req,res)=>{
-    fs.readFile('log.txt', 'utf-8', (err, data) => {
+    var data
+      fs.readFile('log.txt', 'utf-8', (err, d) => {
         if(err) {
             throw err;
         }
-        console.log(data);
+        data=d;
+        console.log(d)
+        res.send(`<form  method="POST" onsubmit="document.getElementById('username').value=localStorage.getItem('username')"  >  <input type="text" name="message" id="message"></input><input type="hidden" name="username" id="username">   </input> <button type="submit"> submit</button> </form> <pre>${data}</pre>`)
+
     });
+
+  
+   
+  
 })
+
+
 
 app.post('/',(req, res)=>{
     var logger = fs.createWriteStream('log.txt', {
@@ -30,7 +34,7 @@ app.post('/',(req, res)=>{
       })
       
       logger.write(`${req.body.username}:${req.body.message} \n`) 
-     
+      res.redirect("/")
  
 })
 
