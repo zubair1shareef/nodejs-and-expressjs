@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add products</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding:0;
+
+        }
+        .navbar{
+            background-color: yellow;
+            width:100%;
+            display: flex;
+            align-items: center;
+            height: 50px;
+
+        }
+        .navbar_ul{
+            display: flex;
+            align-items: center;
+            list-style: none;
+          
+            
+        }
+        .navbar_li{
+
+            margin: 30px;
+
+        }
+        .navbar_li:hover{
+            color: red;
+        }
+        .label_title{
+            font-weight: bold;
+            margin:30px;
+        }
+        .input_title{
+            width:160px;
+        }
+        .submit_button{
+            background-color:rgb(202, 202, 4);
+            width: 90px;
+            height:20px;
+            margin-top: 10px;
+            margin-left: 90px;
+            border-radius :5px
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar_ul">
+            <li class="navbar_li" > <a href="/shop">home</a></li>
+            <li class="navbar_li" > <a href="/admin/add-product">add product</a></li>
+            <li class="navbar_li" > <a href="/contact">contact us</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form  action="/product" method="POST">
+            <div>
+                <label class="label_title" for="">title</label>
+                <input class="input_title" type="text" name="title" id="title">
+            </div>
+            
+            <button class="submit_button" type="submit">add product</button>
+
+        </form>
+        
+    </main>
+</body>
+</html>
