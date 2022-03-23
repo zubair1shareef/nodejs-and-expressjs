@@ -18,11 +18,7 @@ app.get('/',(req, res, next)=>{
         data=d;
         console.log(d)
         res.send(`<form  method="POST" onsubmit="document.getElementById('username').value=localStorage.getItem('username')"  >  <input type="text" name="message" id="message"></input><input type="hidden" name="username" id="username">   </input> <button type="submit"> submit</button> </form> <pre>${data}</pre>`)
-
     });
-
-  
-   
   
 })
 
