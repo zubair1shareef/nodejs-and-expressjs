@@ -10,6 +10,20 @@ app.use(login)
 
 
 app.get('/',(req, res, next)=>{
+
+    // const readfile= async()=>{
+    //     var data
+    //    await fs.readFile('log.txt', 'utf-8', (err, d) => {
+    //       if(err) {
+    //           throw err;
+    //       }
+    //       data=d;
+    //       console.log(d)
+        
+    //   });
+    //   res.send(`<form  method="POST" onsubmit="document.getElementById('username').value=localStorage.getItem('username')"  >  <input type="text" name="message" id="message"></input><input type="hidden" name="username" id="username">   </input> <button type="submit"> submit</button> </form> <pre>${data}</pre>`)
+
+    // }
     var data
       fs.readFile('log.txt', 'utf-8', (err, d) => {
         if(err) {
