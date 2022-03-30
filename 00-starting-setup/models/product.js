@@ -1,21 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 
-const p = path.join(
-  path.dirname(process.mainModule.filename),
-  'data',
-  'products.json'
-);
-
-const getProductsFromFile = cb => {
-  fs.readFile(p, (err, fileContent) => {
-    if (err) {
-      cb([]);
-    } else {
-      cb(JSON.parse(fileContent));
-    }
-  });
-};
+const db=require('../util/database')
 
 module.exports = class Product {
   constructor(id,title, imageUrl, description, price) {
@@ -27,51 +11,29 @@ module.exports = class Product {
   }
 
   save() {
+  return  db.execute(
+      'INSERT INTO products (title ,price,description,imageUrl) VALUES(?,?,?,?)',
+      [this.title, this.price, this.description,this.imageUrl]
+    )
 
-    getProductsFromFile(products => {
-      if(this.id){
-        const existingProductIndex=products.findIndex(prod=>prod.id==this.id);
-        const updatedProduct=[...products];
-        updatedProduct[existingProductIndex]=this;
-        fs.writeFile(p, JSON.stringify(updatedProduct), err => {
-          console.log(err);
-        });
-      }
-      else{
-        this.id=Math.random().toString();
-      products.push(this);
-      fs.writeFile(p, JSON.stringify(products), err => {
-        console.log(err);
-      });
-
-      }
-
-      
-
-      
-    });
+   
    
   }
-    static deleteById(id){
-      getProductsFromFile(product=>{
-        const prod=product.filter(p=>p.id !==id);
-        fs.writeFile(p, JSON.stringify(prod), err => {
-          console.log(err);
-        });
-  
-      })
+
+  static deleteById(id){
+    return db.execute('DELETE FROM products WHERE products.id=?',[id])
+      
           
     }
 
-  static fetchAll(cb) {
-    getProductsFromFile(cb);
+  static fetchAll() {
+   return db.execute('SELECT * FROM products')
+   
   }
 
-  static findById(id,cb){
-    getProductsFromFile(product=>{
-      const pro=product.find(p=>p.id==id);
-      cb(pro)
-    })
+  static findById(id){
+    return db.execute('SELECT * FROM products WHERE products.id=?',[id])
+   
   }
 
 
