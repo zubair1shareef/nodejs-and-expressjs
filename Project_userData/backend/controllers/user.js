@@ -16,7 +16,7 @@ exports.getData=(req,res)=>{
 
 exports.postData=(req,res)=>{
     const name=req.body.name;
-    const email=req.body.email
+    const email=req.body.email;
 
     User.create({
         name,

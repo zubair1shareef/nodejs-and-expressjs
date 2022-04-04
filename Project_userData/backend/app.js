@@ -1,9 +1,5 @@
 const express=require('express');
-const bodyParser = require('body-parser');
-const User=require('./models/user')
 var cors = require('cors')
-
-
 const sequelize=require('./util/db')
 const userRoutes=require('./routes/user')
 const app=express();
