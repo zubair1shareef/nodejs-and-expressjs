@@ -1,5 +1,5 @@
 *{
-    box-sizing: border-box
+    box-sizing: border-box;
     
 }
 body{
@@ -21,8 +21,9 @@ button{
     color: white;
     transition:transform 0.3s ease-in-out;
 }
-button.active{
+.btnactive{
     transform: translateX(-100px);
+    transition:transform 0.3s ease-in-out;
 }
 nav{
     height:100vh;
@@ -45,10 +46,11 @@ nav ul li{
     padding:2rem 0;
 
 }
-nav.active{
+.active{
     transform: translateX(0);
 }
 nav a{
     text-decoration:none;
     color:white;
-}
+} 
+
