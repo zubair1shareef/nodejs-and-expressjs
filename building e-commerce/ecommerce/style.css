@@ -1,0 +1,180 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+body{
+    height: auto   ;
+    width: 100%;
+   
+    margin: 0;
+    
+        
+    
+    font-size: 20px;
+    font-family:"Poppins",sans-serif
+ 
+}
+.container{
+    margin: 0;
+    
+    
+    width: 100%;
+}
+.navbar{
+    height: 40px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    background-color:black;
+    color:white;
+   
+}
+
+.navbar ul{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
+    
+
+}
+.cartbutton{
+    position: fixed;
+    right: 10px;
+    margin: 0;
+
+}
+
+/* -----------------------nav end here--------------------- */
+
+.storename{
+    padding-top: 60px;
+    background-color: rgba(104, 104, 104, 0.743);
+    height: 200px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.storename h1{
+    font-size:90px;
+    color:white;
+}
+
+
+
+/* ------------------------------------------nameend -------------- */
+.product-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+}
+.card-Container{
+    display: flex;
+    width: 60%;
+    /* background-color: aqua; */
+    padding: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.card{
+    display:flex;
+    flex-direction:column;
+    width:290px;
+    height:290px;
+    margin-top:30px;
+    /* background-color:beige; */
+    border-radius:15px;
+    box-shadow: 10px 10px 30px rgba(44, 44, 44, 0.347);
+
+    align-items: center;
+
+
+}
+.card img{
+   
+    width:95%;
+    height: 200px;
+    
+
+}
+.price-addtoCart{
+    width:100%;
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+.card p{
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-size:26px;
+    font-weight:bold;
+}
+.card button{
+    height: 33px;
+    background-color: rgb(88, 100, 180);
+    border:none;
+    border-radius: 5px;
+    color: white;
+    font-weight:bold;
+    text-align:center;
+
+}
+/* ---------------------show cart button start----- */
+.showCart{
+    width:100%;
+    height: 90px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+}
+.showCart button{
+    background-color: rgb(104, 104, 104);
+    color: rgb(128, 140, 217);
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    width: 120px;
+    font-weight: bold;
+}
+
+
+/* -------------------------------footer start here-------------------- */
+footer{
+    display: flex;
+    align-items:center;
+    justify-content:space-around;
+    height: 90px;
+    background-color: rgb(80, 80, 80);
+}
+footer p{
+    font-size: 26px;
+    color: white;
+}
+
+.socialmediaLinks{
+
+}
+
+.socialmediaLinks ul{
+    display: flex;
+    list-style: none;
+
+
+}
+.socialmediaLinks ul li{
+    margin:10px
+}
+
+.socialmediaLinks ul li a img{
+    width: 30px;
+    height: 30px;
+}
