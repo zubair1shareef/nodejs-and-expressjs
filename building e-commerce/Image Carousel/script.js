@@ -1,10 +1,17 @@
 const  imgs=document.getElementById('images')
+const  leftbtn=document.getElementById('leftbtn')
+const  rightbtn=document.getElementById('rightbtn')
 
-let idx=0;
+
+
+
+var idx=0;
 
 const img=document.querySelectorAll('#images img')
 
 function run(){
+   
+    console.log(idx)
     idx++;
    
     if(idx>img.length-1){
@@ -12,9 +19,28 @@ function run(){
     }
 
     imgs.style.transform=`translateX(${-idx*500}px)`
-    setTimeout(()=>{
-        run()
-    
-    },2000)
+   
 }
-run()
+leftbtn.addEventListener('click', ()=>{
+    if(idx==0){
+        idx=img.length-1;
+    }
+    idx--;
+    
+    imgs.style.transform=`translateX(${-idx*500}px)`
+})
+rightbtn.addEventListener('click', ()=>{
+    if(idx>img.length-1){
+        idx=0;
+    }
+    idx++;
+    
+    imgs.style.transform=`translateX(${-idx*500}px)`
+})
+
+setInterval(()=>{
+    
+    run()
+
+},1000)
+

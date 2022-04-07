@@ -17,6 +17,7 @@ body{
     overflow: hidden;
     width: 500px;
     height: 500px;
+    position: relative;
 }
 
 .image-container{
@@ -28,5 +29,28 @@ img{
     width: 500px;
     height: 500px;
     object-fit:cover;
+
+}
+.leftbttn{
+    position:absolute;
+    left:0;
+   top:250px;
+   
+    z-index: 10;
+    background-color:rgba(0, 0, 0, 0.222);
+    color:white;
+
+}
+
+
+.rightbttn{
+    position:absolute;
+    background-color:rgba(0, 0, 0, 0.222);
+
+    right:0;
+   top:250px;
+  color:white;
+  border:none;
+    z-index: 10;
 
 }
