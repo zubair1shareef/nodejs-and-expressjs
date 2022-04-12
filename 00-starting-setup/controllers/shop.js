@@ -96,7 +96,7 @@ exports.postCard=(req,res,next)=>{
       });
     })
     .then(() => {
-      res.redirect('/cart');
+      res.status(200).json({message:"added to cart"})
     })
     .catch(err => console.log(err));
 }

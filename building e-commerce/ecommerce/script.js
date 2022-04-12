@@ -64,13 +64,13 @@ function addItemToCart(title, price, image) {
   </div>`;
   cartRow.innerHTML = cartRowContent;
   cartItem.append(cartRow);
-  showToast(title);
+ 
 }
 
 function showToast(name) {
   const noti = document.createElement("div");
   noti.classList.add("toast");
-  noti.innerText = `${name} is added`;
+  noti.innerText = `${name}  added`;
 
   toastContainer.appendChild(noti);
 
@@ -92,8 +92,27 @@ function createProductCard(data) {
         />
         <div class="price-addtoCart">
           <h3 class="price">$ ${data.price}</h3>
-          <button class="add-to-cart-btn">ADD TO CART</button>
+          <button class="add-to-cart-btn" onClick="addtoCartPost('${data.id}','${data.title}')">ADD TO CART</button>
         </div>  `;
   card.innerHTML = producutCart;
   cardContainer.appendChild(card);
+}
+
+function addtoCartPost(id,title){
+    axios.post('http://localhost:3000/cart',{productId:id}).then((res)=>{
+      
+    console.log(res)
+    if(res.status==200){
+        showToast(title);
+    }
+    else{
+        showToast("error in ");
+
+    }
+        
+       
+       
+
+         
+    })
 }
