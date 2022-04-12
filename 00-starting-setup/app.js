@@ -11,8 +11,9 @@ const Product=require('./models/product')
 const User=require('./models/user')
 const Cart=require('./models/cart')
 const CartItem=require('./models/cart-item')
+var cors = require('cors')
 
-
+app.use(cors())
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
@@ -50,8 +51,8 @@ Product.belongsToMany(Cart, { through: CartItem });
 // User.hasMany(Order);
 // Order.belongsToMany(Product, { through: OrderItem });
 
-sequelize.sync({force:true})
-// sequelize.sync()
+// sequelize.sync({force:true})
+  sequelize.sync()
 .then(result=>{
     console.log('data base connected');
     return User.findByPk(1)

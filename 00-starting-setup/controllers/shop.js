@@ -3,11 +3,12 @@ const Cart = require('../models/cart');
 
 exports.getProducts = (req, res, next) => {
   Product.findAll().then((produucts)=>{
-    res.render('shop/product-list', {
-      prods: produucts,
-      pageTitle: 'All Products',
-      path: '/products'
-    });
+    res.json({produucts})
+    // res.render('shop/product-list', {
+    //   prods: produucts,
+    //   pageTitle: 'All Products',
+    //   path: '/products'
+    // });
   })
   .catch(err=>{
     console.log(err);
