@@ -51,12 +51,14 @@ exports.getIndex = (req, res, next) => {
 exports.getCart = (req, res, next) => {
   req.user.getCart().then((cart)=>{
     return cart.getProducts().then(product=>{
+
+      res.status(200).json(product)
       // console.log(JSON.stringify(product))
-      res.render('shop/cart', {
-        path: '/cart',
-        pageTitle: 'Your Cart',
-        product:product
-      })
+      // res.render('shop/cart', {
+      //   path: '/cart',
+      //   pageTitle: 'Your Cart',
+      //   product:product
+      // })
     })
 
   })
