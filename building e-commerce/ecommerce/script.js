@@ -15,6 +15,7 @@ const addtoCartBtn=document.getElementsByClassName('add-to-cart-btn')
 for(var i = 0;i<addtoCartBtn.length;i++){
     var btn=addtoCartBtn[i];
     btn.addEventListener('click',addToCart)
+   
 }
 
 function addToCart(e){
@@ -25,6 +26,7 @@ function addToCart(e){
     const image=shopItem.getElementsByClassName('productImg')[0].src
     console.log(title,price,image)
     addItemToCart(title,price,image)
+    cartSection.classList.add('active')
 }
 function addItemToCart(title,price,image){
 
@@ -51,6 +53,7 @@ function addItemToCart(title,price,image){
   cartRow.innerHTML=cartRowContent
     cartItem.append(cartRow)
     showToast(title)
+    
 
 }
 
