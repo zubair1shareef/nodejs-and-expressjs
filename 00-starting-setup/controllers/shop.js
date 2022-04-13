@@ -1,9 +1,22 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
 
+const ITEAM_PER_PAGE=2;
+
 exports.getProducts = (req, res, next) => {
-  Product.findAll().then((produucts)=>{
-    res.json({produucts})
+  const page=req.query.page;
+  var totalCountPage;
+
+  Product.count().then(pagecnt=>{
+    totalCountPage=Math.ceil(pagecnt/ITEAM_PER_PAGE) 
+   return Product.findAll({offset:(page-1)*ITEAM_PER_PAGE,limit:ITEAM_PER_PAGE})
+   
+    
+  })
+
+  .then((produucts)=>{
+    console.log(totalCountPage)
+    res.json({produucts,pageCount:totalCountPage})
     // res.render('shop/product-list', {
     //   prods: produucts,
     //   pageTitle: 'All Products',

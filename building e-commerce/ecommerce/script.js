@@ -4,15 +4,29 @@ const toast = document.getElementById("toast");
 const toastContainer = document.getElementById("toast-container");
 const cardContainer = document.getElementById("card-Container");
 
+var page=1;
+var totalPages;
+
+
 cartbtn.addEventListener("click", () => {
   cartSection.classList.toggle("active");
 });
 
+
+
+
+
 window.addEventListener("DOMContentLoaded", () => {
+    
+     var page = location.href.split("page=").slice(-1)[0]
+    console.log(page)
   axios
-    .get("http://localhost:3000/products")
+    .get(`http://localhost:3000/products/?page=${page}`)
+    
     .then((data) => {
       console.log(data.data.produucts);
+      console.log(data.data.pageCount);
+      totalPages=data.data.pageCount
       for (var i = 0; i < data.data.produucts.length; i++) {
         console.log(data.data.produucts[i]);
         createProductCard(data.data.produucts[i]);
@@ -21,8 +35,25 @@ window.addEventListener("DOMContentLoaded", () => {
     .then(() => {
       addtToCartFunction();
       getCartFromBackEnd()
+      paginationHtmlCreation(totalPages)
+      
     });
 });
+
+function paginationHtmlCreation(totalpage){
+    const paginationContainer=document.getElementById('pagination')
+
+    for(var i=1;i<=totalpage;i++){
+        console.log("page is "+i)
+        const aTag= `<a class="paginationBtns" id="paginationBtns" href="./index.html?page=${i}">${i}</a>`
+        pagination.innerHTML= pagination.innerHTML+aTag
+
+    }
+
+    
+    
+
+}
 
 function getCartFromBackEnd(){
 

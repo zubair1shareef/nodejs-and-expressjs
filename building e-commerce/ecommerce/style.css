@@ -334,3 +334,25 @@ footer p{
     background-color:rgba(63, 51, 153, 0.633);
     color: white;
 }
+
+/* ----------------------------------------pagination--------------- */
+
+.pagination{
+    margin: auto;
+    
+    width: 30%;
+  padding: 10px;
+  display:flex;
+  justify-content:space-evenly
+}
+
+.paginationBtns{
+    outline:none;
+    font-style: none;
+    color: black;
+    text-decoration: none;
+    padding: 0.3rem;
+    
+    border: 2px solid rgb(69, 26, 154);
+   
+}
