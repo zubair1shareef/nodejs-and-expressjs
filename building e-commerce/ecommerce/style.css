@@ -198,6 +198,7 @@ footer p{
 
 .Cart-Section{
     height:100vh;
+    width:530px;
     background-color: rgb(247, 247, 247);
     position: fixed;
     right: 0px;

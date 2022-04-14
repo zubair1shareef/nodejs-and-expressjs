@@ -4,7 +4,7 @@ const Cart = require('../models/cart');
 const ITEAM_PER_PAGE=2;
 
 exports.getProducts = (req, res, next) => {
-  const page=req.query.page;
+  const page=req.query.page ||1;
   var totalCountPage;
 
   Product.count().then(pagecnt=>{
@@ -116,16 +116,52 @@ exports.postCard=(req,res,next)=>{
     .catch(err => console.log(err));
 }
 
+
+exports.postOrders=(req,res,next)=>{
+  let odersDetails
+  let fetchedCart
+  req.user.getCart().then(cart=>{
+    fetchedCart=cart
+    return cart.getProducts();
+  })
+  .then(products =>{
+   return req.user.createOrder()
+   .then(order=>{
+    odersDetails=order;
+    return order.addProducts(products.map(product=>{
+       product.orderItem= {quantity:product.cartItem.quantity}       
+       return product;
+     }))    
+   })   
+  })
+  .then(result=>{   
+    fetchedCart.setProducts(null)
+    res.status(200).json({orderDetails:odersDetails})
+    
+  })
+
+}
+
 exports.getOrders = (req, res, next) => {
-  res.render('shop/orders', {
-    path: '/orders',
-    pageTitle: 'Your Orders'
-  });
+
+  req.user.getOrders({include:['products']})
+  .then(orders=>{
+    res.status(200).json(orders)
+  }).catch(err=>{
+    console.log(err)
+  })
+  //http://localhost:3000/create-orders
+  // res.render('shop/orders', {
+  //   path: '/orders',
+  //   pageTitle: 'Your Orders'
+  // });
 };
 
 exports.getCheckout = (req, res, next) => {
-  res.render('shop/checkout', {
-    path: '/checkout',
-    pageTitle: 'Checkout'
-  });
+ req.user.getOrders({include:['products']})
+  .then(orders=>{
+    res.status(200).json(orders)
+  }).catch(err=>{
+    console.log(err)
+  })
 };

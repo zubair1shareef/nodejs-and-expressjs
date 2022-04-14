@@ -3,8 +3,9 @@ const cartSection = document.getElementById("Cart-Section");
 const toast = document.getElementById("toast");
 const toastContainer = document.getElementById("toast-container");
 const cardContainer = document.getElementById("card-Container");
+const btnPurchase = document.getElementById("btn-purchase");
 
-var page=1;
+
 var totalPages;
 
 
@@ -14,11 +15,34 @@ cartbtn.addEventListener("click", () => {
 
 
 
+function ordertheItems(){
+  btnPurchase.addEventListener('click',()=>{
+
+    axios.post('http://localhost:3000/create-orders')
+    .then(orderDeatils=>{
+     
+      console.log(orderDeatils.data.orderDetails);
+      showToast("order created with order id:" +orderDeatils.data.orderDetails.id)
+      var cartItem = document.getElementsByClassName("cart-items")[0];
+
+      cartItem.innerHTML=null;
+     
+    })
+    
+    
+  
+    
+  })
+}
+
 
 
 window.addEventListener("DOMContentLoaded", () => {
     
-     var page = location.href.split("page=").slice(-1)[0]
+     var page = location.href.split("page=").slice(-1)[0] || 1
+     if(page.length>3){
+         page=1
+     }
     console.log(page)
   axios
     .get(`http://localhost:3000/products/?page=${page}`)
@@ -36,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
       addtToCartFunction();
       getCartFromBackEnd()
       paginationHtmlCreation(totalPages)
-      
+      ordertheItems()
     });
 });
 
@@ -125,7 +149,7 @@ function addItemToCart(title, price, image,qty) {
 function showToast(name) {
   const noti = document.createElement("div");
   noti.classList.add("toast");
-  noti.innerText = `${name}  added`;
+  noti.innerText = `${name}  `;
 
   toastContainer.appendChild(noti);
 
@@ -158,11 +182,12 @@ function addtoCartPost(id,title){
       
     console.log(res)
     if(res.status==200){
-        showToast(title);
+        showToast(title+" is added to cart");
         
     }
     else{
-        showToast("error in ");
+        showToast('error in adding' +title);
+       
 
     }
    
@@ -171,3 +196,4 @@ function addtoCartPost(id,title){
         console.error(err)
     })
 }
+
